@@ -13,3 +13,9 @@ def detail(request, slug):
         "article" : get_object_or_404(Article, slug = slug, status = "p")
     }
     return render(request, "blog/detail.html", context)
+
+def blog(request):
+    context = {
+        "articles" : Article.objects.filter(status = "p").order_by("-publish")
+    }
+    return render(request, "blog/blog.html", context)

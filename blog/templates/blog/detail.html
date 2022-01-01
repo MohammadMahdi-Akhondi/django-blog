@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block header_detail %} active {% endblock %}
+{% block blog %}<span class="sr-only">(current)</span>{% endblock %}
 
 {% block content %}
     <!-- Banner Starts Here -->
@@ -33,7 +34,7 @@
                 <div class="col-lg-12">
                   <div class="blog-post">
                     <div class="blog-thumb">
-                      <img src="{{article.thumbnail.url}}" alt="">
+                      <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}">
                     </div>
                     <div class="down-content">
                       <span></span>
