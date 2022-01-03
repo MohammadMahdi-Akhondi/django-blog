@@ -41,7 +41,7 @@
                       <a href="post-details.html"><h4>{{ article.title }}</h4></a>
                       <ul class="post-info">
                         <li><a href="#">Mahdi</a></li>
-                        <li><a href="#">{{ article.publish }}</a></li>
+                        <li><a href="#">{{ article.jpublish }}</a></li>
                         <li><a href="#">4 Comments</a></li>
                       </ul>
                       {{ article.description | linebreaks }}
@@ -156,7 +156,7 @@
                         {% for post in articles %}
                         <li><a href="{% url 'blog:detail' post.slug %}">
                           <h5>{{ post.title }}</h5>
-                          <span>{{ post.publish }}</span>
+                          <span>{{ post.jpublish }}</span>
                         </a></li>
                         {% endfor %}
                       </ul>
