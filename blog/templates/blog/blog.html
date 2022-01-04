@@ -14,9 +14,9 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
-              <div class="text-content">
-                <h4>Recent Posts</h4>
-                <h2>Our Recent Blog Entries</h2>
+              <div class="text-content" style="text-align: right;">
+                <h4>مقالات اخیر</h4>
+                <h2>آخرین مقالات وبلاگ ما</h2>
               </div>
             </div>
           </div>
@@ -28,53 +28,20 @@
     <section class="blog-posts grid-system">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8">
-            <div class="all-blog-posts">
-              <div class="row">
-                {% for article in articles %}
-                  <div class="col-lg-6">
-                    <div class="blog-post">
-                      <div class="blog-thumb">
-                        <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}">
-                      </div>
-                      <div class="down-content">
-                        <span></span>
-                        <a href="post-details.html"><h4>{{ article.title }}</h4></a>
-                        <ul class="post-info">
-                          <li><a href="">Mahdi</a></li>
-                          <li><a href="">{{ article.jpublish }}</a></li>
-                          <li><a href="">4 Comments</a></li>
-                        </ul>
-                        <p>{{ article.description | truncatewords:20 }}</p>
-                      </div>
-                    </div>
-                  </div>
-                {% endfor %}
-                <div class="col-lg-12">
-                  <ul class="page-numbers">
-                    <li class="active"><a href="">1</a></li>
-                    <li><a href="">2</a></li>
-                    <li><a href="">3</a></li>
-                    <li><a href=""><i class="fa fa-angle-double-right"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
           <div class="col-lg-4">
             <div class="sidebar">
               <div class="row">
                 <div class="col-lg-12">
                   <div class="sidebar-item search">
                     <form id="search_form" name="gs" method="GET" action="#">
-                      <input type="text" name="q" class="searchText" placeholder="type to search..." autocomplete="on">
+                      <input type="text" name="q" class="searchText" placeholder="جستجو ..." autocomplete="on">
                     </form>
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="sidebar-item recent-posts">
                     <div class="sidebar-heading">
-                      <h2>Recent Posts</h2>
+                      <h2>پست‌های اخیر</h2>
                     </div>
                     <div class="content">
                       <ul>
@@ -91,19 +58,51 @@
                 <div class="col-lg-12">
                   <div class="sidebar-item categories">
                     <div class="sidebar-heading">
-                      <h2>Categories</h2>
+                      <h2>دسته‌بندی ها</h2>
                     </div>
                     <div class="content">
                       <ul>
-                        <li><a href="#">- Nature Lifestyle</a></li>
-                        <li><a href="#">- Awesome Layouts</a></li>
-                        <li><a href="#">- Creative Ideas</a></li>
-                        <li><a href="#">- Responsive Templates</a></li>
-                        <li><a href="#">- HTML5 / CSS3 Templates</a></li>
-                        <li><a href="#">- Creative &amp; Unique</a></li>
+                        {% for category in categories %}
+                        <li><a href="#">- {{ category.title }}</a></li>
+                        {% endfor %}
                       </ul>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="all-blog-posts">
+              <div class="row">
+                {% for article in articles %}
+                  <div class="col-lg-6">
+                    <div class="blog-post">
+                      <div class="blog-thumb">
+                        <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}">
+                      </div>
+                      <div class="down-content">
+                        {% for category in article.category.all %}
+                        <span>{{ category.title }}</span>
+                        {% endfor %}
+                        <a href="post-details.html"><h4>{{ article.title }}</h4></a>
+                        <ul class="post-info">
+                          <li><a href="">Mahdi</a></li>
+                          <li><a href="">{{ article.jpublish }}</a></li>
+                          <li><a href="">4 Comments</a></li>
+                        </ul>
+                        <p>{{ article.description | truncatewords:20 }}</p>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+                <div class="col-lg-12">
+                  <ul class="page-numbers">
+                    <li class="active"><a href="">1</a></li>
+                    <li><a href="">2</a></li>
+                    <li><a href="">3</a></li>
+                    <li><a href=""><i class="fa fa-angle-double-left"></i></a></li>
+                  </ul>
                 </div>
               </div>
             </div>

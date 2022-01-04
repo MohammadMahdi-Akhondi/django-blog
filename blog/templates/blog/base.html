@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{% static 'blog/assets/css/fontawesome.css' %}">
     <link rel="stylesheet" href="{% static 'blog/assets/css/templatemo-stand-blog.css' %}">
     <link rel="stylesheet" href="{% static 'blog/assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/assets/css/rtl.css' %}">
     
 <!-- TemplateMo 551 Stand Blog https://templatemo.com/tm-551-stand-blog -->
   
@@ -43,29 +44,29 @@
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="{% url 'blog:home' %}"><h2>My Blog<em>.</em></h2></a>
+          <a class="navbar-brand" href="{% url 'blog:home' %}"><h2><em>.</em> وبلاگ من</h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item {% block header_home %}{% endblock %}">
-                <a class="nav-link" href="{% url 'blog:home' %}">Home
+                <a class="nav-link" href="{% url 'blog:home' %}">صفحه اصلی
                   {% block home %}{% endblock %}
                 </a>
               </li>
               <li class="nav-item {% block header_blog %}{% endblock %}">
-                <a class="nav-link" href="{% url 'blog:blog' %}">Blog Entries
+                <a class="nav-link" href="{% url 'blog:blog' %}">بلاگ
                   {% block blog %}{% endblock %}
                 </a>
               </li>
               <li class="nav-item {% block header_about %}{% endblock %}">
-                <a class="nav-link" href="about.html">About Us
+                <a class="nav-link" href="about.html">درباره ما
                   {% block about %}{% endblock %}
                 </a>
               </li>
               <li class="nav-item {% block header_contact %}{% endblock %}">
-                <a class="nav-link" href="contact.html">Contact Us
+                <a class="nav-link" href="contact.html">ارتباط با ما
                   {% block contact %}{% endblock %}
                 </a>
               </li>
@@ -80,15 +81,12 @@
     {% endblock %}
 
     <footer>
-      <div class="container">
+      <div class="container" style="direction: ltr;">
         <div class="row">
           <div class="col-lg-12">
             <ul class="social-icons">
-              <li><a href="#">Facebook</a></li>
               <li><a href="#">Twitter</a></li>
-              <li><a href="#">Behance</a></li>
               <li><a href="#">Linkedin</a></li>
-              <li><a href="#">Dribbble</a></li>
             </ul>
           </div>
           <div class="col-lg-12">
