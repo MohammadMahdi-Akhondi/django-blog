@@ -3,22 +3,24 @@ from .models import Article, Category
 
 def home(request):
     context = {
-        "articles" : Article.objects.filter(status = "p").order_by("-publish"),
-        "categories" : Category.objects.filter(status = True)
+        "articles" : Article.objects.filter(status = "p").order_by("-publish")
     }
     return render(request, "blog/index.html", context)
 
 def detail(request, slug):
     context = {
-        "articles" : Article.objects.filter(status = "p").order_by("-publish")[:3],
-        "article" : get_object_or_404(Article, slug = slug, status = "p"),
-        "categories" : Category.objects.filter(status = True)
+        "article" : get_object_or_404(Article, slug = slug, status = "p")
     }
     return render(request, "blog/detail.html", context)
 
 def blog(request):
     context = {
-        "articles" : Article.objects.filter(status = "p").order_by("-publish"),
-        "categories" : Category.objects.filter(status = True)
+        "articles" : Article.objects.filter(status = "p").order_by("-publish")
     }
     return render(request, "blog/blog.html", context)
+
+def category(request, slug):
+    context = {
+        "category" : get_object_or_404(Category, slug = slug, status = True)
+    }
+    return render(request, "blog/category.html", context)
