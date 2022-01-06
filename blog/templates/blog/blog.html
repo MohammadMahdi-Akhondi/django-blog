@@ -41,8 +41,8 @@
                         <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}">
                       </div>
                       <div class="down-content">
-                        {% for category in article.category.all %}
-                        <span>{{ category.title }}</span>
+                        {% for category in article.published_categories.all %}
+                        <span>#{{ category.title }}</span>
                         {% endfor %}
                         <a href="{% url 'blog:detail' article.slug %}"><h4>{{ article.title }}</h4></a>
                         <ul class="post-info">

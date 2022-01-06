@@ -18,8 +18,8 @@
             <div class="col-lg-12">
               <div class="text-content">
                 <h4>
-                  {% for category in article.category.all %}
-                  <span>{{ category.title }}</span>
+                  {% for category in article.published_categories.all %}
+                  <span># {{ category.title }}</span>
                   {% endfor %}
                 </h4>
                 <h2>{{ article.title }}</h2>
@@ -44,8 +44,8 @@
                       <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}">
                     </div>
                     <div class="down-content">
-                      {% for category in article.category.all %}
-                        <span>{{ category.title }}</span>
+                      {% for category in article.published_categories.all %}
+                        <span># {{ category.title }}</span>
                       {% endfor %}
                       <a href="post-details.html"><h4>{{ article.title }}</h4></a>
                       <ul class="post-info">

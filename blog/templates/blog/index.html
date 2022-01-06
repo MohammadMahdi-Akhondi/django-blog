@@ -20,8 +20,8 @@
               <div class="item-content">
                 <div class="main-content" style="direction: rtl; text-align: right;">
                   <div class="meta-category">
-                    {% for category in article.category.all %}
-                      <span>{{ category.title }}</span>
+                    {% for category in article.published_categories.all %}
+                      <span># {{ category.title }}</span>
                     {% endfor %}
                   </div>
                   <a href=""><h4>{{article.title}}</h4></a>
@@ -53,7 +53,9 @@
                         <img src="{{article.thumbnail.url}}" alt="{{article.title}}">
                       </div>
                       <div class="down-content">
-                        <span></span>
+                        {% for category in article.published_categories.all %}
+                          <span># {{ category.title }}</span>
+                        {% endfor %}
                         <a href="{% url 'blog:detail' article.slug %}"><h4>{{article.title}}</h4></a>
                         <ul class="post-info">
                           <li><a href="">Mahdi</a></li>
