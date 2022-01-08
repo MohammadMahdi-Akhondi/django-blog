@@ -26,7 +26,6 @@ a {
 ul {
 	padding: 0;
 	margin: 0;
-	list-style: none;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -744,6 +743,17 @@ ul.page-numbers li a:hover {
 
 .sidebar .categories ul li {
 	margin-bottom: 15px;
+}
+
+.sidebar .categories ul li:hover ul {
+	display: block;
+}
+
+.sidebar .categories ul li ul {
+	display: none;
+	margin-right: 20px;
+	margin-top: 5px;
+	background-color: rgb(251, 251, 251);
 }
 
 .sidebar .categories ul li:last-child {

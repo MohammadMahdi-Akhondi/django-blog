@@ -1,6 +1,6 @@
 <ul>
-    {% for category in category.children.all %}
-        <li style="list-style: square !important;">
+    {% for category in category.children.active %}
+        <li>
             <a href="{% url 'blog:category' category.slug %}">{{ category.title }}</a>
         </li>
         {% if category.chilren %}

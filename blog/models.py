@@ -9,6 +9,10 @@ class ArticleManager(models.Manager):
     def published(self):
         return self.filter(status = 'p')
 
+class CategoryManager(models.Manager):
+    def active(self):
+        return self.filter(status = True)
+
 class Category(models.Model):
     title    = models.CharField(max_length=100, verbose_name='عنوان دسته‌بندی')
     slug     = models.SlugField(max_length=50, unique=True, verbose_name='آدرس دسته‌بندی')
@@ -23,6 +27,8 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
+    
+    objects = CategoryManager()
 
 
 

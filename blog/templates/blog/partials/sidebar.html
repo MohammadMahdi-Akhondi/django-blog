@@ -34,9 +34,9 @@
               <ul>
                 {% for category in categories %}
                   {% if category.parent == None %}
-                    <li style="list-style: square !important;">
+                    <li>
                       <a href="{% url 'blog:category' category.slug %}">{{ category.title }}</a>
-                      {% if category.children.all %}
+                      {% if category.children.active %}
                         {% include 'blog/partials/category_loop.html' %}
                       {% endif %}
                     </li>
