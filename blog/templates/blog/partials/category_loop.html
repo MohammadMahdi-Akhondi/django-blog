@@ -1,0 +1,10 @@
+<ul>
+    {% for category in category.children.all %}
+        <li style="list-style: square !important;">
+            <a href="{% url 'blog:category' category.slug %}">{{ category.title }}</a>
+        </li>
+        {% if category.chilren %}
+            {% include 'blog/partials/category_loop.html' %}
+        {% endif %}
+    {% endfor %}
+</ul>

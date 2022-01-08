@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.deletion import SET_NULL
 from django.utils import timezone
 from extensions.utils import jalali_converter
 
@@ -11,13 +12,14 @@ class ArticleManager(models.Manager):
 class Category(models.Model):
     title    = models.CharField(max_length=100, verbose_name='عنوان دسته‌بندی')
     slug     = models.SlugField(max_length=50, unique=True, verbose_name='آدرس دسته‌بندی')
+    parent   = models.ForeignKey('self', default=None, null=True, blank=True, on_delete=SET_NULL, related_name='children', verbose_name='زیر‌دسته')
     status   = models.BooleanField(default=True, verbose_name='آیا نمایش داده شود؟')
     position = models.IntegerField(verbose_name='پوزیشن')
 
     class Meta:
         verbose_name = "دسته‌بندی"
         verbose_name_plural = "دسته‌بندی‌ ها"
-        ordering = ["position"]
+        ordering = ["parent__id","position"]
 
     def __str__(self):
         return self.title

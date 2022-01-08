@@ -33,7 +33,14 @@
             <div class="content">
               <ul>
                 {% for category in categories %}
-                <li><a href="{% url 'blog:category' category.slug %}">- {{ category.title }}</a></li>
+                  {% if category.parent == None %}
+                    <li style="list-style: square !important;">
+                      <a href="{% url 'blog:category' category.slug %}">{{ category.title }}</a>
+                      {% if category.children.all %}
+                        {% include 'blog/partials/category_loop.html' %}
+                      {% endif %}
+                    </li>
+                  {% endif %}
                 {% endfor %}
               </ul>
             </div>
