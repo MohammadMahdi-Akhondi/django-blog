@@ -3,7 +3,7 @@
 {% load base_tags %}
 
 {% block title %}
-  {{article.title}}
+  {{object.title}}
 {% endblock %}
 
 {% block header_detail %} active {% endblock %}
@@ -18,11 +18,11 @@
             <div class="col-lg-12">
               <div class="text-content">
                 <h4>
-                  {% for category in article.published_categories.all %}
+                  {% for category in object.published_categories.all %}
                   <span># {{ category.title }}</span>
                   {% endfor %}
                 </h4>
-                <h2>{{ article.title }}</h2>
+                <h2>{{ object.title }}</h2>
               </div>
             </div>
           </div>
@@ -41,19 +41,19 @@
                 <div class="col-lg-12">
                   <div class="blog-post">
                     <div class="blog-thumb">
-                      <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}">
+                      <img src="{{ object.thumbnail.url }}" alt="{{ object.title }}">
                     </div>
                     <div class="down-content">
-                      {% for category in article.published_categories.all %}
+                      {% for category in object.published_categories.all %}
                         <span># {{ category.title }}</span>
                       {% endfor %}
-                      <a href="post-details.html"><h4>{{ article.title }}</h4></a>
+                      <a href="post-details.html"><h4>{{ object.title }}</h4></a>
                       <ul class="post-info">
                         <li><a href="#">Mahdi</a></li>
-                        <li><a href="#">{{ article.jpublish }}</a></li>
+                        <li><a href="#">{{ object.jpublish }}</a></li>
                         <li><a href="#">۴ دیدگاه</a></li>
                       </ul>
-                      {{ article.description | linebreaks }}
+                      {{ object.description | linebreaks }}
                     </div>
                   </div>
                 </div>
