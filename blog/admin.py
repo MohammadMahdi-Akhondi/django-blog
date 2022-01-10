@@ -1,6 +1,10 @@
 from django.contrib import admin
 from .models import Article, Category
 
+# Admid header & admin title
+admin.site.site_header = "مدیریت وبلاگ"
+admin.site.site_title = "مدیریت وبلاگ"
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('position', 'title', 'slug', 'parent', 'status')
     list_filter = (['status'])
@@ -31,7 +35,7 @@ admin.site.register(Category, CategoryAdmin)
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'jpublish', 'status', 'category_to_str')
+    list_display = ('title', 'thumbnail_tag', 'slug', 'jpublish', 'status', 'category_to_str')
     list_filter = ('publish', 'status')
     search_fields = ('title', 'description')
     prepopulated_fields = {'slug' : ('title',)}
@@ -57,7 +61,7 @@ class ArticleAdmin(admin.ModelAdmin):
     make_draft.short_description = "پیش‌نویس کردن مقالات انتخاب شده"
 
     def category_to_str(self, obj):
-        return ", ".join([category.title for category in obj.published_categories()])
+        return ", ".join([category.title for category in obj.category.active()])
     category_to_str.short_description = "دسته بندی"
 
 admin.site.register(Article, ArticleAdmin)

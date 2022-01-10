@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.deletion import SET_NULL
 from django.utils import timezone
 from extensions.utils import jalali_converter
+from django.utils.html import format_html
 
 # My managers
 
@@ -61,5 +62,9 @@ class Article(models.Model):
 
     def published_categories(self):
         return self.category.filter(status = True)
+
+    def thumbnail_tag(self):
+        return format_html("<img width=150 height=100 style='border-radius: 5px' src={}>".format(self.thumbnail.url))
+    thumbnail_tag.short_description = "تصویر"
 
     objects = ArticleManager()
