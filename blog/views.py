@@ -1,14 +1,8 @@
-from django.db.models.query import QuerySet
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
-from django.core.paginator import Paginator
 from .models import Article, Category
+from django.contrib.auth.models import User
 
-# def home(request):
-#     context = {
-#         "articles" : Article.objects.published().order_by("-publish")
-#     }
-#     return render(request, "blog/index.html", context)
 
 class IndexList(ListView):
     queryset =  Article.objects.published().order_by("-publish")
@@ -39,4 +33,19 @@ class CategoryList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['category'] = category
+        return context
+
+
+class AuthorList(ListView):
+    paginate_by = 6
+    template_name = 'blog/author_list.html'
+    def get_queryset(self):
+        global author
+        username = self.kwargs.get('username')
+        author = get_object_or_404(User, username = username)
+        return author.articles.published()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['author'] = author
         return context

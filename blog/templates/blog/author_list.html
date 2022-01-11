@@ -1,0 +1,25 @@
+{% extends './list.html' %}
+
+{% block title %}
+  نویسنده : {{ author.get_full_name }}
+{% endblock %}
+
+{% block header %}
+  <h3 class="alert alert-primary text-center">نویسنده : {{ author.get_full_name }}</h3>
+{% endblock %}
+
+{% block previous_page_url %}
+  {% url 'blog:author' author.username %}?page={{ page_obj.previous_page_number }}
+{% endblock %}
+
+{% block current_page_url %}
+  {% url 'blog:author' author.username %}?page={{i}}
+{% endblock %}
+
+{% block other_page_url %}
+  {% url 'blog:author' author.username %}?page={{i}}
+{% endblock %}
+
+{% block next_page_url %}
+  {% url 'blog:author' author.username %}?page={{ page_obj.next_page_number }}
+{% endblock %}

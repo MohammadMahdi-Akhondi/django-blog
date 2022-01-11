@@ -40,7 +40,7 @@
                         {% endfor %}
                         <a href="{% url 'blog:detail' article.slug %}"><h4>{{ article.title }}</h4></a>
                         <ul class="post-info">
-                          <li><a href="">Mahdi</a></li>
+                          <li><a href="{% url 'blog:author' article.author %}">{{ article.author.get_full_name }}</a></li>
                           <li><a href="">{{ article.jpublish }}</a></li>
                           <li><a href="">4 Comments</a></li>
                         </ul>

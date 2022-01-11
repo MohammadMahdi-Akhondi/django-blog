@@ -35,7 +35,7 @@ admin.site.register(Category, CategoryAdmin)
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'thumbnail_tag', 'slug', 'jpublish', 'status', 'category_to_str')
+    list_display = ('title', 'thumbnail_tag', 'slug', 'author', 'jpublish', 'status', 'category_to_str')
     list_filter = ('publish', 'status')
     search_fields = ('title', 'description')
     prepopulated_fields = {'slug' : ('title',)}
@@ -45,18 +45,18 @@ class ArticleAdmin(admin.ModelAdmin):
     def make_publish(self, request, queryset):
         rows_updated = queryset.update(status = 'p')
         if rows_updated == 1:
-            message_bit = '.با موفقیت منتشر شد'
+            message_bit = 'با موفقیت منتشر شد.'
         else:
-            message_bit = '.با موفقیت منتشر شدند'
+            message_bit = 'با موفقیت منتشر شدند.'
         self.message_user(request, "{} مقاله {}".format(rows_updated, message_bit))
     make_publish.short_description = "منتشر کردن مقالات انتخاب شده"
 
     def make_draft(self, request, queryset):
         rows_updated = queryset.update(status = 'd')
         if rows_updated == 1:
-            message_bit = '.با موفقیت پیش‌نویش شد'
+            message_bit = 'با موفقیت پیش‌نویش شد.'
         else:
-            message_bit = '.با موفقیت پیش‌نویس شدند'
+            message_bit = 'با موفقیت پیش‌نویس شدند.'
         self.message_user(request, "{} مقاله {}".format(rows_updated, message_bit))
     make_draft.short_description = "پیش‌نویس کردن مقالات انتخاب شده"
 

@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.deletion import SET_NULL
+from django.contrib.auth.models import User
 from django.utils import timezone
 from extensions.utils import jalali_converter
 from django.utils.html import format_html
@@ -14,10 +14,11 @@ class CategoryManager(models.Manager):
     def active(self):
         return self.filter(status = True)
 
+
 class Category(models.Model):
     title    = models.CharField(max_length=100, verbose_name='عنوان دسته‌بندی')
     slug     = models.SlugField(max_length=50, unique=True, verbose_name='آدرس دسته‌بندی')
-    parent   = models.ForeignKey('self', default=None, null=True, blank=True, on_delete=SET_NULL, related_name='children', verbose_name='زیر‌دسته')
+    parent   = models.ForeignKey('self', default=None, null=True, blank=True, on_delete=models.SET_NULL, related_name='children', verbose_name='زیر‌دسته')
     status   = models.BooleanField(default=True, verbose_name='آیا نمایش داده شود؟')
     position = models.IntegerField(verbose_name='پوزیشن')
 
@@ -41,6 +42,7 @@ class Article(models.Model):
     )
     title       = models.CharField(max_length=100, verbose_name='عنوان مقاله')
     slug        = models.SlugField(max_length=50, unique=True, verbose_name='آدرس مقاله')
+    author      = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='articles', verbose_name='نویسنده')
     category    = models.ManyToManyField(Category, verbose_name="دسته‌بندی", related_name="articles")
     description = models.TextField(verbose_name='توضیحات')
     thumbnail   = models.ImageField(upload_to="images",verbose_name='تصویر مقاله')
