@@ -1,4 +1,6 @@
 {% load static %}
+{% load widget_tweaks %}
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -27,15 +29,36 @@
                         <form class="signin-form" method="post">
                             {% csrf_token %}
                             <div class="form-group">
-                                {{ form.username }}
+                                {% render_field form.username class+="form-control" placeholder="نام کاربری" %}
                             </div>
+                            {% if form.username.errors %}
+                                <div class="alert alert-danger">
+                                    {% for error in form.username.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
                             <div class="form-group">
-                                {{ form.password }}
+                                {% render_field form.password class+="form-control" placeholder="رمزعبور" %}
                                 <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             </div>
+                            {% if form.password.errors %}
+                                <div class="alert alert-danger">
+                                    {% for error in form.password.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
                             <div class="form-group">
                                 <button type="submit" class="form-control btn btn-primary submit px-3">ورود</button>
                             </div>
+                            {% if form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    {% for error in form.non_field_errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
                         </form>
                     </div>
                 </div>
