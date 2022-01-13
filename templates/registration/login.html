@@ -1,6 +1,53 @@
-<form method="post">
-    {% csrf_token %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+      <title>ورود</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    {{ form.as_p }}
-    <button type="submit">ورود</button>
-</form>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="{% static 'registration/login/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'registration/login/css/my.css' %}">
+
+    </head>
+    <body class="img js-fullheight">
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">ورود به حساب</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="login-wrap p-0">
+                        <h3 h3 class="mb-4 text-center">آیا حساب دارید؟ </h3>
+                        <form class="signin-form" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{ form.username }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.password }}
+                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary submit px-3">ورود</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="{% static 'registration/login/js/jquery.min.js' %}"></script>
+      <script src="{% static 'registration/login/js/popper.js' %}"></script>
+      <script src="{% static 'registration/login/js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'registration/login/js/main.js' %}"></script>
+
+    </body>
+</html>
+
