@@ -62,6 +62,10 @@ class Article(models.Model):
         return jalali_converter(self.publish)
     jpublish.short_description = "تاریخ انتشار"
 
+    def category_to_str(self):
+        return ", ".join([category.title for category in self.category.active()])
+    category_to_str.short_description = "دسته بندی"
+
     def published_categories(self):
         return self.category.filter(status = True)
 

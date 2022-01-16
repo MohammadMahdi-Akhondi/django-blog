@@ -60,8 +60,5 @@ class ArticleAdmin(admin.ModelAdmin):
         self.message_user(request, "{} مقاله {}".format(rows_updated, message_bit))
     make_draft.short_description = "پیش‌نویس کردن مقالات انتخاب شده"
 
-    def category_to_str(self, obj):
-        return ", ".join([category.title for category in obj.category.active()])
-    category_to_str.short_description = "دسته بندی"
 
 admin.site.register(Article, ArticleAdmin)
