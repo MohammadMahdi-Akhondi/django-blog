@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from extensions.utils import jalali_converter
 from django.utils.html import format_html
+from django.urls import reverse
+
+    
+
 
 # My managers
 
@@ -72,5 +76,8 @@ class Article(models.Model):
     def thumbnail_tag(self):
         return format_html("<img width=150 height=100 style='border-radius: 5px' src={}>".format(self.thumbnail.url))
     thumbnail_tag.short_description = "تصویر"
+
+    def get_absolute_url(self):
+        return reverse("account:home")
 
     objects = ArticleManager()
