@@ -1,13 +1,48 @@
 {% extends './base.html' %}
 
-{% block title %}
+{% load crispy_forms_tags %}
+
+{% block title-meta %}
     افزودن مقاله
 {% endblock %}
 
 {% block main %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        <div class="col-md-12">
+            <div class="card card-secondary">
+                <div class="card-header">
+                <h3 class="card-title mb-0 float-left">افزودن مقاله</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            {{ form.title|as_crispy_field }}
+                        </div>
+                        <div class="col-6">
+                            {{ form.slug|as_crispy_field }}
+                        </div>
+                        <div class="col-12">
+                            {{ form.description|as_crispy_field }}
+                        </div>
+                        <div class="col-6">
+                            {{ form.publish|as_crispy_field }}
+                            {{ form.author|as_crispy_field }}
+                        </div>
+                        <div class="col-6">
+                            {{ form.category|as_crispy_field }}
+                        </div>
+                        <div class="col-6">
+                            {{ form.status|as_crispy_field }}
+                        </div>
+                        <div class="col-6">
+                            {{ form.thumbnail|as_crispy_field }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <button class="btn btn-success">ارسال مقاله</button>
     </form>
 {% endblock %}

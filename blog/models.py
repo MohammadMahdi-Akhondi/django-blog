@@ -48,7 +48,7 @@ class Article(models.Model):
     slug        = models.SlugField(max_length=50, unique=True, verbose_name='آدرس مقاله')
     author      = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='articles', verbose_name='نویسنده')
     category    = models.ManyToManyField(Category, verbose_name="دسته‌بندی", related_name="articles")
-    description = models.TextField(verbose_name='توضیحات')
+    description = models.TextField(verbose_name='محتوا')
     thumbnail   = models.ImageField(upload_to="images",verbose_name='تصویر مقاله')
     publish     = models.DateTimeField(default=timezone.now, verbose_name='تاریخ انتشار')
     created     = models.DateTimeField(auto_now_add=True)

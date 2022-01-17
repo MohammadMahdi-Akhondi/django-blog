@@ -5,7 +5,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>وبلاگ من</title>
+  <title>
+    {% block title-meta %}{% endblock %}
+  </title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -66,7 +68,7 @@
     <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-      <h1 class="m-0 text-dark">{% block title %}عنوان صفحه{% endblock %}</h1>
+      <h1 class="m-0 text-dark">{% block title %}{% endblock %}</h1>
       </div><!-- /.col -->
     </div><!-- /.row -->
     </div><!-- /.container-fluid -->

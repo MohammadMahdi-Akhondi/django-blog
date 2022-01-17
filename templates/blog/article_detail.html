@@ -49,11 +49,11 @@
                       {% endfor %}
                       <a href="post-details.html"><h4>{{ object.title }}</h4></a>
                       <ul class="post-info">
-                        <li><a href="#">Mahdi</a></li>
+                        <li><a href="{% url 'blog:author' object.author %}">{{ object.author.get_full_name }}</a></li>
                         <li><a href="#">{{ object.jpublish }}</a></li>
                         <li><a href="#">۴ دیدگاه</a></li>
                       </ul>
-                      {{ object.description | linebreaks }}
+                      {{ object.description | safe }}
                     </div>
                   </div>
                 </div>

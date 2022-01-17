@@ -1,8 +1,8 @@
 {% extends './base.html' %}
 
-{% block title %}
+{% block title %}{% block title-meta %}
     لیست مقالات
-{% endblock %}
+{% endblock %}{% endblock %}
 
 {% block main %}
 <div class="row">
@@ -28,7 +28,7 @@
             <td><img src="{{ article.thumbnail.url }}" width="120"></td>
             <td>{{ article.category_to_str }}</td>
             <td>{{ article.author }}</td>
-            <td>{{ article.description|truncatewords:20 }}</td>
+            <td>{{ article.description | striptags| truncatewords:20 }}</td>
             <td>{{ article.jpublish }}</td>
             <td>
             {% if article.status == "p" %}

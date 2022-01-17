@@ -44,7 +44,7 @@
                           <li><a href="">{{ article.jpublish }}</a></li>
                           <li><a href="">4 Comments</a></li>
                         </ul>
-                        <p>{{ article.description | truncatewords:20 }}</p>
+                        <p>{{ article.description | striptags | truncatewords:20 }}</p>
                       </div>
                     </div>
                   </div>
