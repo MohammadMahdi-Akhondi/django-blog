@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from account.models import User
 from django.utils import timezone
 from extensions.utils import jalali_converter
 from django.utils.html import format_html

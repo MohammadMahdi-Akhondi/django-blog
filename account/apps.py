@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class AccountConfig(AppConfig):
     name = 'account'
-    verbose_name = 'حساب کاربری'
+    verbose_name = 'کاربر'
