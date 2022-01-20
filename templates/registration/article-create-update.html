@@ -27,18 +27,20 @@
                             {{ form.description|as_crispy_field }}
                         </div>
                         <div class="col-6">
-                            {{ form.publish|as_crispy_field }}
-                            {{ form.author|as_crispy_field }}
-                        </div>
-                        <div class="col-6">
                             {{ form.category|as_crispy_field }}
                         </div>
+                        <div class="col-6">
+                            {{ form.publish|as_crispy_field }}
+                            {{ form.thumbnail|as_crispy_field }}
+                        </div>
+                        {% if user.is_superuser %}
                         <div class="col-6">
                             {{ form.status|as_crispy_field }}
                         </div>
                         <div class="col-6">
-                            {{ form.thumbnail|as_crispy_field }}
+                            {{ form.author|as_crispy_field }}
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
