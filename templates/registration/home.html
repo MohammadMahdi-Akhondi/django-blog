@@ -24,10 +24,16 @@
         <tbody>
           {% for article in object_list %}
           <tr>
-            <td>{{ article.title }}</td>
+            <td>
+              {% if article.status == 'd' or user.is_superuser %}
+                <a href="{% url 'account:article-update' article.pk %}">{{ article.title }}</a>
+              {% else %}
+                {{ article.title }}
+              {% endif %}
+            </td>
             <td><img src="{{ article.thumbnail.url }}" width="120"></td>
             <td>{{ article.category_to_str }}</td>
-            <td>{{ article.author }}</td>
+            <td>{{ user.get_full_name }}</td>
             <td>{{ article.description | striptags| truncatewords:20 }}</td>
             <td>{{ article.jpublish }}</td>
             <td>
