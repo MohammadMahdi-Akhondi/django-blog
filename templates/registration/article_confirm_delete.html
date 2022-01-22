@@ -1,0 +1,25 @@
+{% extends './base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title-meta %}
+    افزودن مقاله
+{% endblock %}
+
+{% block main %}
+<div class="col-md-8 text-center mx-auto">
+    <div class="card card-danger">
+        <div class="card-header">
+        <h3 class="card-title mb-0 float-left">حذف مقاله</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body py-4">
+            <form method="post">{% csrf_token %}
+                <p class="py-2">آیا نسبت حذف مقاله "{{ object }}" از "{{ object.author.get_full_name }}" مطمین هستید؟</p>
+                {{ form }}
+                <input class="btn btn-danger" type="submit" value="تایید">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
