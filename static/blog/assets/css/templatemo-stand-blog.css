@@ -473,10 +473,8 @@ header .navbar {
 }
 
 .blog-posts .down-content p {
-	padding: 25px 0px;
-	margin: 25px 0px;
-	border-top: 1px solid #eee;
-	border-bottom: 1px solid #eee;
+	padding: 2px 0px;
+	margin: 2px 0px;
 }
 
 .blog-posts .down-content ul.post-share {
