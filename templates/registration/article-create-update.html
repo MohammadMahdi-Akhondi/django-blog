@@ -46,5 +46,8 @@
             </div>
         </div>
         <button class="btn btn-success">ارسال مقاله</button>
+        {% if request.resolver_match.kwargs.pk and user.is_superuser %}
+        <a href="{% url 'account:article-delete' request.resolver_match.kwargs.pk %}" class="btn btn-danger">حذف مقاله</a>
+        {% endif %}
     </form>
 {% endblock %}
