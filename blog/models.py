@@ -42,7 +42,9 @@ class Category(models.Model):
 class Article(models.Model):
     STATUS_CHOICES = (
         ('d', 'پیش‌نویس'),
-        ('p', 'منتشرشده')
+        ('p', 'منتشرشده'),
+        ('i', 'در حال بررسی'),
+        ('b', 'رد شده')
     )
     title       = models.CharField(max_length=100, verbose_name='عنوان مقاله')
     slug        = models.SlugField(max_length=50, unique=True, verbose_name='آدرس مقاله')
