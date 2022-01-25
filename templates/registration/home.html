@@ -40,9 +40,10 @@
                 <td>
                 {% if article.status == "p" %}
                   <span class="badge badge-success">منتشر شده</span>
-                  <a href="{% url 'blog:detail' article.slug %}" target="_blank" class="badge badge-primary">نمایش مقاله</a>
+                  <a href="{% url 'blog:detail' article.slug %}" target="_blank" class="badge badge-primary">نمایش</a>
                 {% else %}
-                  <span class="badge badge-danger">پیش نویس</span>
+                  <span class="badge badge-danger">پیش‌نویس</span>
+                  <a href="{% url 'blog:preview' article.pk %}" target="_blank" class="badge badge-secondary">پیش‌نمایش</a>
                 {% endif %}
                 
                 {% if user.is_superuser %}
