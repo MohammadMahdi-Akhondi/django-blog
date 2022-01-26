@@ -56,6 +56,8 @@ class Article(models.Model):
     created     = models.DateTimeField(auto_now_add=True)
     updated     = models.DateTimeField(auto_now=True)
     status      = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name='وضعیت')
+    is_special  = models.BooleanField(default=False, verbose_name='مقاله ویژه')
+
 
     class Meta:
         verbose_name = "مقاله"

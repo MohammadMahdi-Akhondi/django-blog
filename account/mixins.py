@@ -5,10 +5,10 @@ from blog.models import Article
 class FieldsMixin():
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_superuser:
-            self.fields = ['title', 'slug', 'author', 'category', 'description', 'thumbnail', 'publish', 'status']
+            self.fields = ['title', 'slug', 'author', 'category', 'description', 'thumbnail', 'publish', 'is_special', 'status']
 
         elif request.user.is_author:
-            self.fields = ['title', 'slug', 'category', 'description', 'thumbnail', 'publish']
+            self.fields = ['title', 'slug', 'category', 'description', 'thumbnail', 'is_special', 'publish']
 
         else:
             raise Http404("you can't access to this page !")

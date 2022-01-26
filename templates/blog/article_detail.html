@@ -53,7 +53,15 @@
                         <li><a href="#">{{ object.jpublish }}</a></li>
                         <li><a href="#">۴ دیدگاه</a></li>
                       </ul>
-                      {{ object.description | safe }}
+                      {% if object.is_special %}
+                        {% if user.is_authenticated and user.is_special or user.is_superuser or user == object.author %}
+                          {{ object.description | safe }}
+                        {% else %}
+                          <p>این مقاله ویژه است. برای مشاهده آن باید <a href="#">اشتراک ویژه</a> تهیه کنید.</p>
+                        {% endif %}
+                      {% else %}
+                        {{ object.description | safe }}
+                      {% endif %}
                     </div>
                   </div>
                 </div>
