@@ -1,4 +1,4 @@
-from .mixins import FieldsMixin, FormValidMixin, AuthorAccessMixin, SuperUserMixin
+from .mixins import FieldsMixin, FormValidMixin, AuthorAccessMixin, SuperUserMixin, AuthorMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -9,7 +9,7 @@ from django.contrib.auth.views import LoginView
 
 # Create your views here.
 
-class ArticleList(LoginRequiredMixin, ListView):
+class ArticleList(LoginRequiredMixin, AuthorMixin, ListView):
     template_name = 'registration/home.html'
 
     def get_queryset(self):
@@ -19,7 +19,7 @@ class ArticleList(LoginRequiredMixin, ListView):
             return Article.objects.filter(author=self.request.user)
 
 
-class ArticleCreate(LoginRequiredMixin, FieldsMixin, FormValidMixin, CreateView):
+class ArticleCreate(LoginRequiredMixin, AuthorMixin, FieldsMixin, FormValidMixin, CreateView):
     model = Article
     template_name = 'registration/article-create-update.html'
 
