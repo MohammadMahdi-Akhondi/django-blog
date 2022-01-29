@@ -29,19 +29,39 @@
                         <div class="col-6">
                             {{ form.category|as_crispy_field }}
                         </div>
-                        <div class="col-6">
-                            {{ form.publish|as_crispy_field }}
-                            {{ form.thumbnail|as_crispy_field }}
-                        </div>
                         {% if user.is_superuser %}
                         <div class="col-6">
                             {{ form.status|as_crispy_field }}
+                            {{ form.publish|as_crispy_field }}
+                        </div>
+                        {% else %}
+                            <div class="col-6">
+                                {{ form.publish|as_crispy_field }}
+                                <div id="div_id_status" class="form-group">
+                                    <label for="id_status" class=" requiredField">
+                                    وضعیت<span class="asteriskField">*</span>
+                                    </label>
+                                    <div class="">
+                                        <select name="status" class="select form-control" required="" id="id_status">
+                                            <option value="">---------</option>
+                                            <option value="d" selected="">پیش‌نویس</option>
+                                            <option value="i">ارسال برای ادمین</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="col-6">
+                            {{ form.thumbnail|as_crispy_field }}
+                        </div>
+                        {% if user.is_superuser %}
+                            <div class="col-6">
+                                {{ form.author|as_crispy_field }}
+                            </div>
+                        {% endif %}
+                        <div class="col-6">
                             {{ form.is_special|as_crispy_field }}
                         </div>
-                        <div class="col-6">
-                            {{ form.author|as_crispy_field }}
-                        </div>
-                        {% endif %}
                     </div>
                 </div>
             </div>
