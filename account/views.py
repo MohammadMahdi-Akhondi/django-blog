@@ -9,7 +9,7 @@ from django.contrib.auth.views import LoginView
 
 # Create your views here.
 
-class ArticleList(LoginRequiredMixin, AuthorMixin, ListView):
+class ArticleList(AuthorMixin, ListView):
     template_name = 'registration/home.html'
 
     def get_queryset(self):
@@ -19,7 +19,7 @@ class ArticleList(LoginRequiredMixin, AuthorMixin, ListView):
             return Article.objects.filter(author=self.request.user)
 
 
-class ArticleCreate(LoginRequiredMixin, AuthorMixin, FieldsMixin, FormValidMixin, CreateView):
+class ArticleCreate(AuthorMixin, FieldsMixin, FormValidMixin, CreateView):
     model = Article
     template_name = 'registration/article-create-update.html'
 

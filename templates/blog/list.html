@@ -38,6 +38,9 @@
                         {% for category in article.category.active %}
                         <span># {{ category.title }}</span>
                         {% endfor %}
+                        {% if article.is_special %}
+                          <span class="badge badge-danger" style="color: white; font-size: 13px;">ویژه</span>
+                        {% endif %}
                         <a href="{% url 'blog:detail' article.slug %}"><h4>{{ article.title }}</h4></a>
                         <ul class="post-info">
                           <li><a href="{% url 'blog:author' article.author %}">{{ article.author.get_full_name }}</a></li>
