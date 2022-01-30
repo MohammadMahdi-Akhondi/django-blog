@@ -35,9 +35,13 @@
                         <div class="col-12">
                             {{ form.is_author|as_crispy_field }}
                         </div>
+                        <div class="col-12">
+                            <label class="my-4">گذرواژه :</label>
+                            <span>برای تغییر گذرواژه <a href="{% url 'account:password_change' %}">کلیک </a>کنید.</span>
+                        </div>
                         <div class="mr-3">
                             <button class="btn btn-success">ویرایش اطلاعات</button>
-                        </div> 
+                        </div>
                     </div>
                 </form>
             </div>
