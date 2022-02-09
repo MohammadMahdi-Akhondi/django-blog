@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.utils import timezone
 from django.contrib import messages
+from django.core.mail import EmailMessage
+from django.contrib.sites.shortcuts import get_current_site
+from django.urls import reverse
 
 from comment.models import Comment
 from comment.forms import CommentForm
@@ -42,6 +45,45 @@ class CreateComment(CanCreateMixin, CommentCreateMixin):
         )
         self.comment = self.perform_create(temp_comment, self.request)
         self.data = render_to_string(self.get_template_names(), self.get_context_data(), request=self.request)
+
+        # send email section
+        current_site = get_current_site(self.request)
+        article = self.comment.content_object
+        author_email = article.author.email
+        user_email = self.comment.user.email
+        if author_email == user_email:
+            author_email = False
+            user_email = False
+        parent_email = False
+        if self.comment.parent:
+            parent_email = self.comment.parent.user.email
+            if parent_email in [author_email, user_email]:
+                parent_email = False
+        
+        if author_email:
+            email = EmailMessage(
+                'دیدگاه جدید',
+                f'دیدگاه جدیدی برای مقاله «{article}» ارسال شده:\n{current_site}{reverse("blog:detail", kwargs = {"slug" : article.slug})}',
+                to=[author_email]
+            )
+            email.send()
+
+        if user_email:
+            email = EmailMessage(
+                'دیدگاه شما دریافت شد',
+                'دیدگاه شما دریافت شد.\nدر اسرع وقت به آن پاسخ خواهیم داد.',
+                to=[user_email]
+            )
+            email.send()
+
+        if parent_email:
+            email = EmailMessage(
+                'به دیدگاه شما پاسخ داده شد',
+                f'پاسخ به دیدگاه شما در مقاله «{article}» ثبت شده است.\nبرای مشاهده بر روی لینک زیر کلیک کنید:\n{current_site}{reverse("blog:detail", kwargs = {"slug" : article.slug})}',
+                to=[parent_email]
+            )
+            email.send()
+
         return UTF8JsonResponse(self.json())
 
     def form_invalid(self, form):
