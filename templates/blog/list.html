@@ -1,6 +1,8 @@
 {% extends './base.html' %}
 
 {% load base_tags %}
+{% load ratings %}
+{% load comment_tags %}
 
 {% block content %}
     <!-- Banner Starts Here -->
@@ -42,10 +44,11 @@
                           <span class="badge badge-danger" style="color: white; font-size: 13px;">ویژه</span>
                         {% endif %}
                         <a href="{% url 'blog:detail' article.slug %}"><h4>{{ article.title }}</h4></a>
+                        {% ratings article %}
+                        <p><a href="{% url 'blog:author' article.author %}" class="color: #f48840 !important;">{{ article.author.get_full_name }}</a></p>
                         <ul class="post-info">
-                          <li><a href="{% url 'blog:author' article.author %}">{{ article.author.get_full_name }}</a></li>
-                          <li><a href="">{{ article.jpublish }}</a></li>
-                          <li><a href="">4 Comments</a></li>
+                          <li><a href="" style="display: inline-block; pointer-events: none;">{{ article.jpublish }}</a></li>
+                          <li><a href="" style="display: inline-block; pointer-events: none;">{% get_comments_count article user %} دیدگاه</a></li>
                         </ul>
                         <p>{{ article.description | striptags | truncatewords:20 }}</p>
                       </div>

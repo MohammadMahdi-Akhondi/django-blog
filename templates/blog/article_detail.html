@@ -3,6 +3,7 @@
 {% load static %}
 {% load base_tags %}
 {% load comment_tags %}
+{% load ratings %}
 
 {% block title %}
   {{object.title}}
@@ -58,8 +59,8 @@
                       <a href="post-details.html"><h4>{{ object.title }}</h4></a>
                       <ul class="post-info">
                         <li><a href="{% url 'blog:author' object.author %}">{{ object.author.get_full_name }}</a></li>
-                        <li><a href="#">{{ object.jpublish }}</a></li>
-                        <li><a href="#">۴ دیدگاه</a></li>
+                        <li><a href="" style="display: inline-block; pointer-events: none;">{{ object.jpublish }}</a></li>
+                        <li><a href="" style="display: inline-block; pointer-events: none;">{% get_comments_count object user %} دیدگاه</a></li>
                       </ul>
                       {% if object.is_special %}
                         {% if user.is_authenticated and user.is_special or user.is_superuser or user == object.author %}
@@ -72,6 +73,11 @@
                       {% else %}
                         {{ object.description | safe }}
                       {% endif %}
+
+                      <div class="my-5">
+                        <p>به مقاله فوق چه امتیازی می دهید؟</p>
+                        {% ratings object %}
+                      </div>
 
                       {% render_comments object request %}
                       {% include_static %}
