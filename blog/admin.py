@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Article, Category
+from .models import Article, Category, IPAddress
 
 # Admid header & admin title
 admin.site.site_header = "مدیریت وبلاگ"
@@ -62,3 +62,4 @@ class ArticleAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Article, ArticleAdmin)
+admin.site.register(IPAddress)

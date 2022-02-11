@@ -1,3 +1,4 @@
+from ipaddress import ip_address
 from django.db import models
 from account.models import User
 from django.utils import timezone
@@ -16,9 +17,21 @@ class ArticleManager(models.Manager):
     def published(self):
         return self.filter(status = 'p')
 
+
 class CategoryManager(models.Manager):
     def active(self):
         return self.filter(status = True)
+
+
+class IPAddress(models.Model):
+    ip_address = models.GenericIPAddressField(verbose_name = 'آدرس آی‌پی')
+
+    class Meta:
+        verbose_name = 'آی‌پی'
+        verbose_name_plural = 'آی‌پی ها'
+
+    def __str__(self):
+        return self.ip_address
 
 
 class Category(models.Model):
@@ -37,8 +50,6 @@ class Category(models.Model):
         return self.title
     
     objects = CategoryManager()
-
-
 
 
 class Article(models.Model):
@@ -60,6 +71,7 @@ class Article(models.Model):
     status      = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name='وضعیت')
     is_special  = models.BooleanField(default=False, verbose_name='مقاله ویژه')
     comments    = GenericRelation(Comment)
+    hits        = models.ManyToManyField(IPAddress, blank = True, related_name = 'hits', verbose_name = 'بازدید ها')
 
 
     class Meta:
