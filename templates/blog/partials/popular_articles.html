@@ -6,11 +6,9 @@
       <div class="content">
         <ul>
           {% for article in popular_articles %}
-            {% if category.parent == None %}
-              <li>
-                <a href="{% url 'blog:detail' article.slug %}">{{ article.title }}</a>
-              </li>
-            {% endif %}
+            <li>
+              <a href="{% url 'blog:detail' article.slug %}">{{ article.title }}</a>
+            </li>
           {% endfor %}
         </ul>
       </div>

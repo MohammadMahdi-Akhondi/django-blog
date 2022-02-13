@@ -6,6 +6,7 @@ from django.utils.html import format_html
 from django.urls import reverse
 from django.contrib.contenttypes.fields import GenericRelation
 from comment.models import Comment
+from star_ratings.models import Rating
 
     
 
@@ -71,6 +72,7 @@ class Article(models.Model):
     is_special  = models.BooleanField(default=False, verbose_name='مقاله ویژه')
     comments    = GenericRelation(Comment)
     hits        = models.ManyToManyField(IPAddress, through = 'ArticleHit',blank = True, related_name = 'hits', verbose_name = 'بازدید ها')
+    ratings     = GenericRelation(Rating)
 
 
     class Meta:
