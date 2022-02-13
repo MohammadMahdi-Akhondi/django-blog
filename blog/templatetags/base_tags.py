@@ -13,7 +13,7 @@ def sidebar():
     return {
         "articles" : Article.objects.filter(status = "p").order_by("-publish")[:3],
         "categories" : Category.objects.filter(status = True),
-        "most_star" : Article.objects.published().filter(ratings__content_type_id = contenttype_id).order_by('- ratings__average'),
+        "most_star" : Article.objects.published().filter(ratings__content_type_id = contenttype_id).order_by('-ratings__average'),
     }
 
 @register.inclusion_tag('blog/partials/popular_articles.html')

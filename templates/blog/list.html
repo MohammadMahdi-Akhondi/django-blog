@@ -57,6 +57,8 @@
                       </div>
                     </div>
                   </div>
+                {% empty %}
+                  <p class="mr-4 alert">متاسفانه محتوایی برای نمایش وجود ندارد!</p>
                 {% endfor %}
                 {% if is_paginated %}
                   <div class="col-lg-12">

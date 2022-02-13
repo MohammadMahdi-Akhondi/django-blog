@@ -1,5 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
+from django.db.models import Q
+
 from .models import Article, Category
 from account.models import User
 from account.mixins import AuthorAccessMixin
@@ -61,4 +63,17 @@ class AuthorList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['author'] = author
+        return context
+
+
+class SearchList(ListView):
+    paginate_by = 6
+    template_name = 'blog/search_list.html'
+    def get_queryset(self):
+        search = self.request.GET.get('q')
+        return Article.objects.published().filter(Q(description__icontains = search) | Q(title__icontains = search)).order_by('-publish')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search'] = self.request.GET.get('q')
         return context

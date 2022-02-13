@@ -5,7 +5,8 @@ from .views import (
     ArticleDetail,
     ArticlePreview,
     CategoryList,
-    AuthorList
+    AuthorList,
+    SearchList
 )
 
 app_name = "blog"
@@ -16,5 +17,6 @@ urlpatterns = [
     path('article/<slug:slug>', ArticleDetail.as_view(), name="detail"),
     path('preview/<int:pk>', ArticlePreview.as_view(), name="preview"),
     path('category/<slug:slug>', CategoryList.as_view(), name="category"),
-    path('author/<slug:username>', AuthorList.as_view(), name="author")
+    path('author/<slug:username>', AuthorList.as_view(), name="author"),
+    path('search/', SearchList.as_view(), name="search"),
 ]
