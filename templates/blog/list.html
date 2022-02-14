@@ -3,6 +3,7 @@
 {% load base_tags %}
 {% load ratings %}
 {% load comment_tags %}
+{% load humanize %}
 
 {% block content %}
     <!-- Banner Starts Here -->
@@ -50,7 +51,7 @@
                           <li><a href="" style="display: inline-block; pointer-events: none;">{% get_comments_count article user %} دیدگاه</a></li>
                         </ul>
                         <ul class="post-info" style="display: inline-block; pointer-events: none;">
-                          <li><a href="">{{ article.jpublish }}</a></li>
+                          <li><a href="">{{ article.publish|naturaltime }}</a></li>
                           <li><a href="">بازدیدها: {{ article.hits.count }}</a></li>
                         </ul>
                         <p>{{ article.description | striptags | truncatewords:20 }}</p>
